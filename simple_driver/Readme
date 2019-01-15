@@ -1,0 +1,4 @@
+loading driver:
+              insmod simple_driver.ko
+Removing driver:
+              rmmod simple_driver.ko   
