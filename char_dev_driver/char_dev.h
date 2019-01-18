@@ -9,6 +9,15 @@ extern int 	char_dev_open(struct inode *, struct file *);
 extern int 	char_dev_release(struct inode *, struct file *);
 extern ssize_t  char_dev_read(struct file *, char *, size_t, loff_t *);
 extern ssize_t  char_dev_write(struct file *, const char *, size_t, loff_t *);
+extern void     char_dev_exit(void);
+
+static dev_t first; 
+static struct cdev c_dev;
+static struct class *cl;
+
+#define NAME "simple_driver"
+
+static int major = -1;
 
 static struct file_operations fops = {
   .owner   =    THIS_MODULE,
@@ -23,6 +32,6 @@ MODULE_AUTHOR("arjun");
 MODULE_DESCRIPTION("simple char_dev driver");
 
 module_init(char_dev_init_module);
-module_exit(char_dev_cleanup_module);
+module_exit(char_dev_exit);
 
 #endif
